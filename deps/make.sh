@@ -2,6 +2,11 @@
 
 cd $(dirname $0)
 
+cd IniConfigs/src
+make
+
+cd ../..
+
 #
 # compile libevent
 #
