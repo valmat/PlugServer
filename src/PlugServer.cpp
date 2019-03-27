@@ -68,7 +68,6 @@ int main(int argc, char **argv)
             std::cerr << "You tried to set the nofile soft limit to " << nofile_limit << "." << std::endl;
             std::cerr << "Current  nofile soft limit value is " << rlim.rlim_cur << "." << std::endl;
             std::cerr << "Current  nofile hard limit value is " << rlim.rlim_max << "." << std::endl;
-            
         }
     }
     
@@ -79,7 +78,6 @@ int main(int argc, char **argv)
      *  
      */
     Extend ext;
-
 
     /**
      *  
