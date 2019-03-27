@@ -1,0 +1,7 @@
+[submodule "deps/libevent"]
+	path = deps/libevent
+	url = https://github.com/libevent/libevent
+	branch = release-2.1.8-stable
+[submodule "deps/IniConfigs"]
+	path = deps/IniConfigs
+	url = https://github.com/valmat/IniConfigs
