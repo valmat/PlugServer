@@ -8,8 +8,8 @@ OPT_FLAG=-O3
 
 NAME       = simple_plugin
 
-CPP_FLAGS  = -I. -I"/usr/include/rocksserver/rocksdb" -Wall ${OPT_FLAG} -std=c++11 -fPIC -c
-LD_FLAGS   = -Wall -std=c++11 ${OPT_FLAG} -shared
+CPP_FLAGS  = -std=c++17 -I. -I"/usr/include/plugserver" -I"/usr/local/include/vlm" -pedantic -Wall -Wextra -fno-rtti -fno-exceptions ${OPT_FLAG} -fPIC -c
+LD_FLAGS   = -Wall -std=c++17 ${OPT_FLAG} -shared
 
 RESULT     = $(NAME).so
 
@@ -31,8 +31,8 @@ clean:
 	rm -f ${OBJECTS} ${RESULT}
 
 install:
-	cp -f ${RESULT} /usr/lib/rocksserver/plugins/${RESULT}
+	cp -f ${RESULT} /usr/lib/plugserver/plugins/${RESULT}
 
 uninstall:
-	rm -f /usr/lib/rocksserver/plugins/${RESULT}
+	rm -f /usr/lib/plugserver/plugins/${RESULT}
 

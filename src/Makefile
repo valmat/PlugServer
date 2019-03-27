@@ -96,34 +96,31 @@ gch:
 	g++ $(CFLAGS) -I. -I$(LEVENTI) -c PlugServer.h -o PlugServer.h.gch
 
 
-# install:
-# 	mkdir -p /var/plugserver
-# 	chown nobody /var/plugserver
-# 	$(CP) ${SRC}/bin/PlugServer.bin /usr/local/bin/plugserver
-# 	$(CP) ${SRC}/../init.d/plugserver /etc/init.d/plugserver
-# 	mkdir -p /etc/plugserver
-# 	$(CP) ${SRC}/config.ini /etc/plugserver/config.ini
-# 	mkdir -p /usr/lib/plugserver/plugins
-# 	#
-# 	mkdir -p /usr/include/plugserver
-# 	$(CPR) ${SRC}/include/* /usr/include/plugserver/
-# 	#
-# 	mkdir -p /usr/include/plugserver/rocksdb
-# 	$(CPR) ${SRC}/../deps/rocksdb/include/* /usr/include/plugserver/rocksdb/
-# 	#
-# 	update-rc.d plugserver defaults
+install:
+	# 	mkdir -p /var/plugserver
+	# 	chown nobody /var/plugserver
+	# 	$(CP) ${SRC}/bin/PlugServer.bin /usr/local/bin/plugserver
+	# 	$(CP) ${SRC}/../init.d/plugserver /etc/init.d/plugserver
+	# 	mkdir -p /etc/plugserver
+	# 	$(CP) ${SRC}/config.ini /etc/plugserver/config.ini
+	# 	mkdir -p /usr/lib/plugserver/plugins
+	# 	#
+	mkdir -p /usr/include/plugserver
+	$(CPR) ${SRC}/include/* /usr/include/plugserver/
+	# 	#
+	# 	update-rc.d plugserver defaults
 
 # uninstall:
 # 	update-rc.d -f plugserver remove
 # 	rm -f /usr/local/bin/plugserver
 # 	rm -f /etc/init.d/plugserver
 
-# uninstall-clean:
-# 	update-rc.d -f plugserver remove
-# 	rm -fR /var/plugserver
-# 	rm -fR /etc/plugserver
-# 	rm -fR /usr/lib/plugserver/plugins
-# 	rm -fR /usr/include/plugserver
-# 	rm -f /etc/init.d/plugserver
+uninstall-clean:
+	# 	update-rc.d -f plugserver remove
+	# 	rm -fR /var/plugserver
+	# 	rm -fR /etc/plugserver
+	# 	rm -fR /usr/lib/plugserver/plugins
+	rm -fR /usr/include/plugserver
+	# 	rm -f /etc/init.d/plugserver
 
 

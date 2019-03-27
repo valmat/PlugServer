@@ -4,11 +4,11 @@
  *  Simplest example request listener
  *
  *  @author valmat <ufabiz@gmail.com>
- *  @github https://github.com/valmat/rocksserver
+ *  @github https://github.com/valmat/PlugServer
  */
 
 
-namespace RocksServer {
+namespace PlugServer {
 
     struct RequestPing : public RequestBase<ProtocolInTrivial, ProtocolOut>
     {

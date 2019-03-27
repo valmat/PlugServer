@@ -11,7 +11,13 @@
 
 #include <vector>
 #include <unordered_map>
+#include <map>
 #include <forward_list>
+#include <memory>
+
+namespace rocksdb {
+    using Slice = std::string_view;
+}
 
 // C headers
 #include <string.h>
@@ -27,9 +33,9 @@
 #include <plugserver/evhttp/EvLogger.h>
 
 // Configs
-#include <plugserver/iniparse/IniValue.h>
-#include <plugserver/iniparse/IniConfigs.h>
-#include <plugserver/iniparse/DefaultConfigs.h>
+#include <iniconfigs/IniValue.h>
+#include <iniconfigs/IniConfigs.h>
+#include <plugserver/DefaultConfigs.h>
 
 // Protocol
 #include <plugserver/protocols/ProtocolOut.h>
