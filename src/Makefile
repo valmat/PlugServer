@@ -13,10 +13,13 @@ CFLAGS	 = -std=c++17 $(OPT_FLAGS) -pedantic -Wall -Wextra -Wno-unused-parameter 
 BINFILE  = bin/$(NAME).bin
 
 # path to Libevent source
-LEVENTPATH	 = $(PWD)/../deps/libevent
+LEVENTPATH = $(PWD)/../deps/libevent
+LEVENTL	   = $(LEVENTPATH)/.libs
 
-LEVENTI	 = $(LEVENTPATH)/include
-LEVENTL	 = $(LEVENTPATH)/.libs
+INIPATH    = $(PWD)/../deps/IniConfigs
+INIL	   = $(INIPATH)/src
+
+INCL = -I$(INIPATH)/include -I$(LEVENTPATH)/include
 
 CP = cp -f
 CPR = cp -fR
@@ -31,46 +34,46 @@ all: ${BINFILE}
 # 	g++ $(CFLAGS) -I. -I$(LEVENTI) -c PlugServer.h -o PlugServer.h.gch
 
 bin/obj/$(NAME).rs.o: $(NAME).cpp
-	$(CC) $(NAME).cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/$(NAME).rs.o
+	$(CC) $(NAME).cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/$(NAME).rs.o
 
 bin/obj/EvLogger.rs.o: evhttp/EvLogger.cpp
-	$(CC) evhttp/EvLogger.cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/EvLogger.rs.o
+	$(CC) evhttp/EvLogger.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/EvLogger.rs.o
 
 bin/obj/EvServer.rs.o: evhttp/EvServer.cpp
-	$(CC) evhttp/EvServer.cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/EvServer.rs.o
+	$(CC) evhttp/EvServer.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/EvServer.rs.o
 
 bin/obj/EvResponse.rs.o: evhttp/EvResponse.cpp
-	$(CC) evhttp/EvResponse.cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/EvResponse.rs.o
+	$(CC) evhttp/EvResponse.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/EvResponse.rs.o
 
 bin/obj/EvRequest.rs.o: evhttp/EvRequest.cpp
-	$(CC) evhttp/EvRequest.cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/EvRequest.rs.o
+	$(CC) evhttp/EvRequest.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/EvRequest.rs.o
 
 bin/obj/Extend.rs.o: extend/Extend.cpp
-	$(CC) extend/Extend.cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/Extend.rs.o
+	$(CC) extend/Extend.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/Extend.rs.o
 
 bin/obj/PlugContainer.rs.o: extend/PlugContainer.cpp
-	$(CC) extend/PlugContainer.cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/PlugContainer.rs.o
+	$(CC) extend/PlugContainer.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/PlugContainer.rs.o
 
 bin/obj/Extension.rs.o: extend/Extension.cpp
-	$(CC) extend/Extension.cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/Extension.rs.o
+	$(CC) extend/Extension.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/Extension.rs.o
 
-bin/obj/IniConfigs.rs.o: iniparse/IniConfigs.cpp
-	$(CC) iniparse/IniConfigs.cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/IniConfigs.rs.o
+bin/obj/ini.rs.o: ini.cpp
+	$(CC) ini.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/ini.rs.o
 
-bin/obj/IniValue.rs.o: iniparse/IniValue.cpp
-	$(CC) iniparse/IniValue.cpp $(CFLAGS) -I. -I$(LEVENTI) -c -o bin/obj/IniValue.rs.o
+# bin/obj/IniValue.rs.o: iniparse/IniValue.cpp
+# 	$(CC) iniparse/IniValue.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/IniValue.rs.o
 
 
 .PHONY: obj
 obj: bin/obj/$(NAME).rs.o bin/obj/EvLogger.rs.o bin/obj/EvServer.rs.o \
 bin/obj/EvResponse.rs.o bin/obj/EvRequest.rs.o bin/obj/Extend.rs.o \
-bin/obj/PlugContainer.rs.o bin/obj/Extension.rs.o bin/obj/IniConfigs.rs.o bin/obj/IniValue.rs.o
+bin/obj/PlugContainer.rs.o bin/obj/Extension.rs.o bin/obj/ini.rs.o
 
 
 
 #dynamic:
 ${BINFILE}: obj
-	$(CC) bin/obj/*.rs.o $(CFLAGS) -levent -ldl -L$(LEVENTL) -rdynamic -o bin/$(NAME).bin
+	$(CC) bin/obj/*.rs.o $(CFLAGS) -levent -liniconfig -ldl -L$(LEVENTL) -L$(INIL) -rdynamic -o bin/$(NAME).bin
 	@echo
 	@echo "\033[1;36mBuild complite \033[0m"
 #	@echo "To start the server run ./bin/$(NAME).bin config.ini"
@@ -78,7 +81,7 @@ ${BINFILE}: obj
 
 .PHONY: static
 static: obj
-	$(CC) bin/obj/*.rs.o $(CFLAGS) $(LEVENTL)/libevent.a -ldl -rdynamic -o bin/$(NAME).bin
+	$(CC) bin/obj/*.rs.o $(CFLAGS) $(LEVENTL)/libevent.a $(INIL)/libiniconfig.a -ldl -rdynamic -o bin/$(NAME).bin
 	@echo
 	@echo "\033[1;34mBuild complite \033[0m"
 

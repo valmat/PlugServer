@@ -56,9 +56,12 @@ namespace rocksdb {
 #include "include/evhttp/EvLogger.h"
 
 // Configs
-#include "include/iniparse/IniValue.h"
-#include "include/iniparse/IniConfigs.h"
-#include "include/iniparse/DefaultConfigs.h"
+#include "IniValue.h"
+#include "IniConfigs.h"
+using vlm::IniConfigs;
+using vlm::IniValue;
+
+#include "include/DefaultConfigs.h"
 
 // Protocol
 #include "include/protocols/ProtocolOut.h"
