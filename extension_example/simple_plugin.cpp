@@ -19,14 +19,12 @@ using namespace PlugServer;
  *
  * PLUGIN(Extension extension, const IniConfigs& cfg)
  * PLUGIN(Extension extension)
- * PLUGIN(Extension extension)
  *
  * The macro `PLUGIN` is defined in plugserver/api.h. 
  * Instead of using the macro, you can write
  * `extern "C" void plugin(...)` if you like
  *
  * @param extension  object of Extension
- * @param db         wrapped object of RocksDB
  * @param cfg        Reference to configuration settings
  */
 PLUGIN(Extension extension, const vlm::IniConfigs& /*cfg*/)
