@@ -89,11 +89,11 @@ and copy to `/usr/lib/plugserver/plugins`
 ```
 cp -f smpl_plug.so /usr/lib/plugserver/plugins/smpl_plug.so
 ```
-Restart RocksServer.
-See [example](https://github.com/valmat/RocksServer/tree/master/extension_example) how to extend RocksServer.
+Restart PlugServer.
+See [example](https://github.com/valmat/PlugServer/tree/master/extension_example) how to extend PlugServer.
 
 ## How to customize
-Just edit [config.ini](https://github.com/valmat/RocksServer/blob/master/src/config.ini)
+Just edit [config.ini](https://github.com/valmat/PlugServer/blob/master/src/config.ini)
 
 ## License
-[BSD](LICENSE)
+[MIT](LICENSE)
