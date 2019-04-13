@@ -17,12 +17,12 @@ namespace PlugServer {
          *  @param       protocol in object
          *  @param       protocol out object
          */
-        virtual void run(const ProtocolInTrivial &/*in*/, const ProtocolOut &out) override
+        virtual void run(const ProtocolInTrivial &/*in*/, const ProtocolOut &out) noexcept final
         {
             // Just set string to buffer output
             out.setStr("pong");
         }
         
-        virtual ~RequestPing() {}
+        virtual ~RequestPing() = default;
     };
 }

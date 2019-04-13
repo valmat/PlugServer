@@ -7,7 +7,7 @@ OPT_FLAGS=-O3
 #OPT_FLAGS=-g -O0
 
 #compiler flags
-CFLAGS	 = -std=c++17 $(OPT_FLAGS) -pthread -pedantic -Wall -Wextra -Wno-unused-parameter -fno-rtti -fno-exceptions
+CFLAGS	 = -std=c++17 $(OPT_FLAGS) -pthread -pedantic -Wall -Wextra -Wno-unused-parameter -fno-rtti -fno-exceptions -flto
 
 
 BINFILE  = bin/$(NAME).bin
@@ -73,7 +73,8 @@ bin/obj/PlugContainer.rs.o bin/obj/Extension.rs.o bin/obj/ini.rs.o
 
 #dynamic:
 ${BINFILE}: obj
-	$(CC) bin/obj/*.rs.o $(CFLAGS) -lpthread -levent -liniconfig -ldl -L$(LEVENTL) -L$(INIL) -rdynamic -o bin/$(NAME).bin
+	$(CC) bin/obj/*.rs.o $(CFLAGS) -lpthread -levent -liniconfig -ldl -L$(LEVENTL) -L$(INIL) -rdynamic -o ${BINFILE}
+	strip ${BINFILE}
 	@echo
 	@echo "\033[1;36mBuild complite \033[0m"
 #	@echo "To start the server run ./bin/$(NAME).bin config.ini"
@@ -81,7 +82,8 @@ ${BINFILE}: obj
 
 .PHONY: static
 static: obj
-	$(CC) bin/obj/*.rs.o $(CFLAGS) $(LEVENTL)/libevent.a $(INIL)/libiniconfig.a -ldl -rdynamic -o bin/$(NAME).bin
+	$(CC) bin/obj/*.rs.o $(CFLAGS) $(LEVENTL)/libevent.a $(INIL)/libiniconfig.a -ldl -rdynamic -o ${BINFILE}
+	strip ${BINFILE}
 	@echo
 	@echo "\033[1;34mBuild complite \033[0m"
 

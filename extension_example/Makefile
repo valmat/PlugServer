@@ -8,8 +8,8 @@ OPT_FLAG=-O3
 
 NAME       = simple_plugin
 
-CPP_FLAGS  = -std=c++17 -I. -I"/usr/include/plugserver" -I"/usr/local/include/vlm" -pedantic -Wall -Wextra -fno-rtti -fno-exceptions ${OPT_FLAG} -fPIC -c
-LD_FLAGS   = -Wall -std=c++17 ${OPT_FLAG} -shared
+CPP_FLAGS  = -std=c++17 -I. -I"/usr/include/plugserver" -I"/usr/local/include/vlm" -pedantic -Wall -Wextra -fno-rtti -fno-exceptions ${OPT_FLAG} -fPIC -flto -c
+LD_FLAGS   = -Wall -std=c++17 ${OPT_FLAG} -shared -flto
 
 RESULT     = $(NAME).so
 
@@ -20,6 +20,7 @@ all: ${RESULT}
 
 ${RESULT}: ${OBJECTS}
 	${LD} ${LD_FLAGS} -o $@ ${OBJECTS}
+	strip ${RESULT}
 
 ${OBJECTS} : obj/%.o : %.cpp
 	${CPP} ${CPP_FLAGS} $< -o $@
