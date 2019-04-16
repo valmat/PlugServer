@@ -45,6 +45,16 @@ namespace PlugServer {
             return std::string(_data, _len);
         }
 
+        std::string_view toSlice() const
+        {
+            return std::string_view(_data, _len);
+        }
+
+        operator const std::string_view () const
+        {
+            return toSlice();
+        }
+
         /**
          *  Cast to a const char *
          */
@@ -67,6 +77,11 @@ namespace PlugServer {
         size_t size() const
         {
             return _len;
+        }
+
+        bool empty() const
+        {
+            return (0 == _len);
         }
 
         /**

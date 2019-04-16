@@ -21,7 +21,7 @@ namespace PlugServer {
 
         ProtocolInPostKeysIterator begin() const
         {
-            return ProtocolInPostKeysIterator(raw);
+            return ProtocolInPostKeysIterator(_raw);
         }
 
         ProtocolInPostKeysIterator end() const
