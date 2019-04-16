@@ -1,1 +1,1 @@
-#define PLUGSERVER_VERSION "v.0.1.0"
+#define PLUGSERVER_VERSION "v0.1.2"

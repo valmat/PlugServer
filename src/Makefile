@@ -27,6 +27,8 @@ CPR = cp -fR
 #CP = ln -sf
 SRC=`pwd`
 
+VERSION=`git -C .. describe --tags --candidates=1`
+
 all: ${BINFILE}
 
 
@@ -34,7 +36,7 @@ all: ${BINFILE}
 # 	g++ $(CFLAGS) -I. -I$(LEVENTI) -c PlugServer.h -o PlugServer.h.gch
 
 bin/obj/$(NAME).rs.o: $(NAME).cpp
-	$(CC) $(NAME).cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/$(NAME).rs.o
+	$(CC) $(NAME).cpp $(CFLAGS) -I. $(INCL) -c -DPLUGSERVER_VERSION="\"${VERSION}\"" -o bin/obj/$(NAME).rs.o
 
 bin/obj/EvLogger.rs.o: evhttp/EvLogger.cpp
 	$(CC) evhttp/EvLogger.cpp $(CFLAGS) -I. $(INCL) -c -o bin/obj/EvLogger.rs.o
@@ -68,7 +70,7 @@ bin/obj/ini.rs.o: ini.cpp
 obj: bin/obj/$(NAME).rs.o bin/obj/EvLogger.rs.o bin/obj/EvServer.rs.o \
 bin/obj/EvResponse.rs.o bin/obj/EvRequest.rs.o bin/obj/Extend.rs.o \
 bin/obj/PlugContainer.rs.o bin/obj/Extension.rs.o bin/obj/ini.rs.o
-
+	@echo "#define PLUGSERVER_VERSION \"${VERSION}\"" > "include/version.h"
 
 
 #dynamic:

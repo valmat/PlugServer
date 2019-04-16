@@ -6,7 +6,7 @@
  *  @github https://github.com/valmat/PlugServer
  */
 
-#include "include/version.h"
+// #include "include/version.h"
 
 // C++ headers
 #include <iostream>
