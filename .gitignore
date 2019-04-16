@@ -6,3 +6,7 @@
 *.deb
 *.h.gch
 *~
+
+src/include/version.h
+
+
