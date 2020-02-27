@@ -1,7 +1,7 @@
 #ifndef PLUGSERVER_API_H
 #define PLUGSERVER_API_H
 
-#include <plugserver/version.h>
+#include <version.h>
 
 // C++ headers
 #include <iostream>
@@ -23,39 +23,39 @@ namespace rocksdb {
 #include <string.h>
 
 // Type traits
-#include <plugserver/traits.h>
+#include <traits.h>
 
 // Server wrapper
-#include <plugserver/evhttp/EvResponse.h>
-#include <plugserver/evhttp/PostData.h>
-#include <plugserver/evhttp/EvRequest.h>
-#include <plugserver/evhttp/EvServerOptions.h>
-#include <plugserver/evhttp/EvLogger.h>
+#include <evhttp/EvResponse.h>
+#include <evhttp/PostData.h>
+#include <evhttp/EvRequest.h>
+#include <evhttp/EvServerOptions.h>
+#include <evhttp/EvLogger.h>
 
 // Configs
-#include <iniconfigs/IniValue.h>
-#include <iniconfigs/IniConfigs.h>
-#include <plugserver/DefaultConfigs.h>
+#include <IniValue.h>
+#include <IniConfigs.h>
+#include <DefaultConfigs.h>
 
 // Protocol
-#include <plugserver/protocols/ProtocolOut.h>
-#include <plugserver/protocols/ProtocolInPostSimple.h>
-#include <plugserver/protocols/ProtocolInTrivial.h>
-#include <plugserver/protocols/ProtocolInGetIterator.h>
-#include <plugserver/protocols/ProtocolInGet.h>
-#include <plugserver/protocols/ProtocolInPost.h>
-#include <plugserver/protocols/ProtocolInPostKeysIterator.h>
-#include <plugserver/protocols/ProtocolInPostKeys.h>
+#include <protocols/ProtocolOut.h>
+#include <protocols/ProtocolInPostSimple.h>
+#include <protocols/ProtocolInTrivial.h>
+#include <protocols/ProtocolInGetIterator.h>
+#include <protocols/ProtocolInGet.h>
+#include <protocols/ProtocolInPost.h>
+#include <protocols/ProtocolInPostKeysIterator.h>
+#include <protocols/ProtocolInPostKeys.h>
 
-#include <plugserver/protocols/ProtocolInPostPairsIterator.h>
-#include <plugserver/protocols/ProtocolInPostPairs.h>
+#include <protocols/ProtocolInPostPairsIterator.h>
+#include <protocols/ProtocolInPostPairs.h>
 
 // Listeners
-#include <plugserver/listeners/RequestBase.h>
+#include <listeners/RequestBase.h>
 
 
 // Extensions
-#include <plugserver/Extension.h>
+#include <Extension.h>
 
 
 #define PLUGIN extern "C" void plugin
