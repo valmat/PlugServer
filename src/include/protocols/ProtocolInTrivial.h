@@ -15,7 +15,7 @@ namespace PlugServer {
 
     struct ProtocolInTrivial
     {
-        ProtocolInTrivial(const EvRequest &r) {}
+        ProtocolInTrivial(const EvRequest &) {};
     };
 
 }
