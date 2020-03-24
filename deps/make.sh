@@ -3,7 +3,8 @@
 cd $(dirname $0)
 
 cd IniConfigs/src
-make
+make clean
+make -j
 
 cd ../..
 
@@ -13,5 +14,6 @@ cd ../..
 cd libevent
 ./autogen.sh
 ./configure
-make
+make clean
+make -j
 #make verify
